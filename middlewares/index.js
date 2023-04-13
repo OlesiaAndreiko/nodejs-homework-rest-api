@@ -1,5 +1,9 @@
-const validateBody = require("./validateBody");
+const validateAddContact = require("./validateAddContact");
+const validateUpdateContact = require("./validateUpdateContact");
+const validateFieldsContact = require("./validateFieldsContact")
 
 module.exports = {
-    validateBody,
+    validateAddContact,
+    validateUpdateContact,
+    validateFieldsContact,
 }
