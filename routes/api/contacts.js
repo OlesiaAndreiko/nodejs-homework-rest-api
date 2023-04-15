@@ -1,25 +1,29 @@
-const express = require('express')
+const express = require("express");
 
-const router = express.Router()
+const ctrl = require("../../controllers/contacts");
 
-router.get('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+const {
+  validateAddContact,
+  validateUpdateContact,
+  validateFieldsContact,
+} = require("../../middlewares");
 
-router.get('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+const {
+  schemaAddContact,
+  schemaUpdateContact,
+  scemaRequiredField,
+} = require("../../validateSchemas/contacts");
 
-router.post('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+const router = express.Router();
 
-router.delete('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.get("/", ctrl.listContacts);
 
-router.put('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.get("/:contactId", ctrl.getContactById);
 
-module.exports = router
+router.post("/", validateAddContact(schemaAddContact), ctrl.addContact);
+
+router.delete("/:contactId", ctrl.removeContact);
+
+router.put("/:contactId", validateUpdateContact(schemaUpdateContact), validateFieldsContact(scemaRequiredField), ctrl.updateContact);
+
+module.exports = router;
