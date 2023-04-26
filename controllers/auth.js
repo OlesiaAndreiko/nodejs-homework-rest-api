@@ -63,11 +63,9 @@ const getCurrent = async (req, res) => {
     throw HttpError(401, "Not authorized");
   }
 
-  res.json({
-    user: {
+  res.json({   
       email,
       subscription: user.subscription,
-    },
   });
 };
 
