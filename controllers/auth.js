@@ -118,40 +118,16 @@ const updateAvatar = async (req, res) => {
   const { _id } = req.user;
   const { path: tempUpload, originalname } = req.file;
 
-  // 1)
-  // console.log(originalname)
-  // Jimp.read(tempUpload)
-  // .then((lenna) => {
-  //   console.log(lenna);
-  //   lenna
-  //   .resize(250, 250)
-  //   .writeAsync(`${originalname}`);
-  // })
-  // .catch((err) => {
-  //   console.error(err);
-  // });
-
-  // 2)
   const image = await Jimp.read(tempUpload);
-  await image.resize(250, 250).writeAsync(originalname);
+  await image.resize(250, 250).writeAsync(tempUpload);
+  // console.log(image.bitmap.height, image.bitmap.width)
 
   const filename = `${_id}-${originalname}`;
   const resultUpload = path.join(avatarDir, filename);
   await fs.rename(tempUpload, resultUpload);
   const avatarURL = path.join("avatars", filename);
 
-  // 3)
-  //  await Jimp.read(resultUpload)
-  //   .then((image) => {
-  //     console.log(image.bitmap);
-  //    return image.resize(250, 250);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   });
-
-  //   await User.findByIdAndUpdate(_id, { avatarURL });
-  //   console.log(filename)
+  await User.findByIdAndUpdate(_id, { avatarURL });
 
   res.json({
     avatarURL,
