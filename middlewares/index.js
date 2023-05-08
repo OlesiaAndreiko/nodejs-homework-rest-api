@@ -5,6 +5,7 @@ const validateUpdateFavorite = require("./validateUpdateFavorite");
 const validateFieldsFavofite = require("./validateFiledFavorite")
 const isValidId = require("./isValidId");
 const validateUser = require("./validateUser");
+const validateUserVerifyEmail = require("./validateUserVerifyEmail");
 const authenticate = require("./authenticate");
 const validateUpdateSubscr = require("./validateUpdateSubscr");
 const upload = require("./upload");
@@ -17,6 +18,7 @@ module.exports = {
     validateFieldsFavofite,
     isValidId,
     validateUser,
+    validateUserVerifyEmail,
     authenticate,
     validateUpdateSubscr,
     upload,
