@@ -7,7 +7,7 @@ require("dotenv").config();
 const startServer = async () => {
   try {
     await connectMongo();
-    app.listen(process.env.PORT || 9090, (error) => {
+    app.listen(process.env.PORT || 8080, (error) => {
       if(error) {
         console.log(`Error launch server ${error}`)
       }
